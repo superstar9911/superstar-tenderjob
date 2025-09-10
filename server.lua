@@ -6,7 +6,7 @@ RegisterNetEvent('superstar-tenderjob:craftRecipe', function(recipeName)
     local Player = QBCore.Functions.GetPlayer(src)
     local recipe = nil
 
-    -- Find recipe
+    -- Find the recipe from config
     for _, r in pairs(Config.Recipes) do
         if r.name:lower() == recipeName:lower() then
             recipe = r
@@ -41,5 +41,7 @@ RegisterNetEvent('superstar-tenderjob:craftRecipe', function(recipeName)
 
     -- Give crafted item
     Player.Functions.AddItem(recipe.item, 1)
+
+    -- Trigger client for animation and progress bar
     TriggerClientEvent('superstar-tenderjob:craftRecipeClient', src, recipe.item, recipe.name)
 end)
